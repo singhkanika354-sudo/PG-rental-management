@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PG Manager – Tenants & Rent</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🏠 <input id="pgName" aria-label="PG name" value="My PG"></h1>
+  <div style="display:flex;gap:8px;align-items:center">
+    <label for="month" style="margin:0">Month</label>
+    <input type="month" id="month" style="width:auto">
+  </div>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="bar">
+  <button class="pri" data-act="addT">+ Add tenant</button>
+  <button class="wa" data-act="remindAll">WhatsApp reminders to unpaid</button>
+</div>
+<div class="bar">
+  <input type="search" id="q" placeholder="Search name, room or phone">
+  <span class="tabs" id="tabs">
+    <button data-f="all" class="on">All</button>
+    <button data-f="unpaid">Unpaid</button>
+    <button data-f="paid">Paid</button>
+  </span>
+</div>
+
+<div id="list"></div>
+<p class="note">Data is saved in this browser on this device. Use the same phone or computer each time, and tap “Download backup” now and then.<br><button class="sm" data-act="backup">Download backup (CSV)</button></p>
+</div>
+
+<dialog id="dT"><form method="dialog" onsubmit="return false">
+  <h2 id="dTt">Add tenant</h2>
+  <label>Name</label><input id="tName">
+  <div class="g2"><div><label>Phone (WhatsApp)</label><input id="tPhone" inputmode="tel" placeholder="98XXXXXXXX"></div>
+  <div><label>Room / Bed</label><input id="tRoom"></div></div>
+  <div class="g2"><div><label>Monthly rent (₹)</label><input id="tRent" type="number" min="0"></div>
+  <div><label>Deposit (₹)</label><input id="tDep" type="number" min="0"></div></div>
+  <label>Joining date</label><input id="tJoin" type="date">
+  <div class="foot"><button data-act="closeT">Cancel</button><button class="pri" data-act="saveT">Save</button></div>
+</form></dialog>
+
+<dialog id="dB"><form method="dialog" onsubmit="return false">
+  <h2 id="dBt">Bill</h2>
+  <div class="g2"><div><label>Meter – previous</label><input id="bPrev" type="number" min="0"></div>
+  <div><label>Meter – current</label><input id="bCur" type="number" min="0"></div></div>
+  <div class="g2"><div><label>Rate per unit (₹)</label><input id="bRate" type="number" min="0" step="0.01"></div>
+  <div><label>Food / other charges (₹)</label><input id="bOther" type="number" min="0"></div></div>
+  <p id="bTot" style="font-weight:700"></p>
+  <div class="foot"><button data-act="closeB">Cancel</button><button class="pri" data-act="saveB">Save bill</button></div>
+</form></dialog>
+
+<dialog id="dR">
+  <h2>Remind unpaid tenants</h2>
+  <p class="mute">WhatsApp opens one chat at a time. Tap “Send” for each tenant, the message is already written.</p>
+  <div id="rList"></div>
+  <div class="foot"><button data-act="closeR">Close</button></div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>

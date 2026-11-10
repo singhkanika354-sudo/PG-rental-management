@@ -1,0 +1,311 @@
+/* ========== 1. COLOURS (LIGHT MODE) ========== */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  --bg: #f5f6f4;
+  --card: #ffffff;
+  --text: #1d2a24;
+  --mute: #667570;
+  --line: #e2e6e3;
+  --accent: #0f766e;
+  --accent-t: #ffffff;
+  --ok: #15803d;
+  --okbg: #dcfce7;
+  --bad: #b91c1c;
+  --badbg: #fee2e2;
+  --wa: #128c4a;
+}
+
+/* ========== 2. DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111815;
+    --card: #1a2420;
+    --text: #e8efeb;
+    --mute: #93a39b;
+    --line: #2a3731;
+    --accent: #2dd4bf;
+    --accent-t: #06231f;
+    --ok: #4ade80;
+    --okbg: #14341f;
+    --bad: #f87171;
+    --badbg: #3b1717;
+    --wa: #25d366;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111815;
+  --card: #1a2420;
+  --text: #e8efeb;
+  --mute: #93a39b;
+  --line: #2a3731;
+  --accent: #2dd4bf;
+  --accent-t: #06231f;
+  --ok: #4ade80;
+  --okbg: #14341f;
+  --bad: #f87171;
+  --badbg: #3b1717;
+  --wa: #25d366;
+}
+
+/* ========== 3. PAGE BASICS ========== */
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ========== 4. HEADER AND INPUTS ========== */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+h1 input {
+  font: inherit;
+  font-weight: 700;
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed var(--line);
+  color: var(--text);
+  width: 180px;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--mute);
+  margin: 8px 0 3px;
+}
+
+/* ========== 5. STAT CARDS ========== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.stat b {
+  display: block;
+  font-size: 22px;
+}
+
+.stat span {
+  color: var(--mute);
+  font-size: 12px;
+}
+
+/* ========== 6. BUTTONS, SEARCH BAR, TABS ========== */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.bar input[type=search] {
+  flex: 1;
+  min-width: 140px;
+  width: auto;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  padding: 8px 12px;
+}
+
+button.pri {
+  background: var(--accent);
+  color: var(--accent-t);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+button.wa {
+  background: var(--wa);
+  color: #ffffff;
+  border-color: var(--wa);
+  font-weight: 600;
+}
+
+button.sm {
+  padding: 5px 9px;
+  font-size: 13px;
+}
+
+.tabs button.on {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* ========== 7. TENANT CARDS ========== */
+.t {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.t .top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.t h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.mute {
+  color: var(--mute);
+  font-size: 13px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.paid {
+  background: var(--okbg);
+  color: var(--ok);
+}
+
+.unpaid {
+  background: var(--badbg);
+  color: var(--bad);
+}
+
+.brk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 8px 0;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.brk b {
+  color: var(--text);
+}
+
+.acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--mute);
+  padding: 40px 10px;
+}
+
+/* ========== 8. POPUPS AND FOOTER ========== */
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
+  width: min(440px, 94vw);
+  padding: 16px;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+dialog h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.g2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.note {
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 16px;
+  text-align: center;
+}
